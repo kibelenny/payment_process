@@ -4,9 +4,9 @@ from .models import Payment
 class PaymentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Payment
-        fields = ['amount', 'customer_email', 'customer_name']
+        fields = ['id', 'amount', 'customer_email', 'customer_name']
 
 class PaymentStatusSerializer(serializers.ModelSerializer):
     class Meta:
         model = Payment
-        fields = ['id', 'status', 'amount', 'customer_email', 'customer_name', 'updated_at']
+        fields = '__all__'

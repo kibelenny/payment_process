@@ -1,14 +1,16 @@
 import uuid
 
+from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
-from rest_framework.views import APIView
 from payments.models import Payment
 from payments.serializers import PaymentSerializer, PaymentStatusSerializer
 from rest_framework import status
 
 
 # Create your views here.
-class InitializePayment(APIView):
+class InitializePayment(GenericAPIView):
+    serializer_class = PaymentSerializer
+    
     def post(self, request):
         data = request.data
         serializer = PaymentSerializer(data=data)
@@ -33,8 +35,18 @@ class InitializePayment(APIView):
             'message': 'Failed to initialize payment',
         }, status=status.HTTP_400_BAD_REQUEST,
         )
+    def get(self, request):
+        payments = Payment.objects.all()
+        serializer = PaymentSerializer(payments, many=True)
+        return Response({
+            'payments': serializer.data,
+            'status': 'success',
+            'message': 'Payments Retrieved Successfully',
+        }, status=status.HTTP_200_OK)
 
-class PaymentStatus(APIView):
+class PaymentStatus(GenericAPIView):
+    serializer_class = PaymentStatusSerializer
+    
     def get(self, request, payment_id):
         try:
             payment = Payment.objects.get(id=payment_id)
