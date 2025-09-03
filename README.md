@@ -46,3 +46,5 @@ The application is deployed in Render. You can view it [here](https://payment-pr
    - `RENDER_SERVICE_ID`: Your Render service ID.
    - `RENDER_API_KEY`: Your Render key.
 6. Push to the main branch to trigger tests and deployment.
+
+**NOTE**: Remember to add the Render URL to the allowed hosts in `settings.py`
