@@ -3,8 +3,6 @@ name: CI/CD Testing and Deployment
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
   test:
@@ -26,8 +24,10 @@ jobs:
 
   deploy:
     needs: test
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v4
     - name: Deploy to Render
       uses: johnbeynon/render-deploy-action@v0.0.8
       with:
