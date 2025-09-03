@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-6^uq9b=abkzn+3$t1!a444y-ac_x6*@a)9v&g#awh18s0a+&2v
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'https://payment-process-gx0i.onrender.com']
+ALLOWED_HOSTS = ['localhost', 'payment-process-gx0i.onrender.com']
 
 
 # Application definition
